@@ -1,0 +1,623 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D819420C21F2994D0027DFA7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D819420B21F2994D0027DFA7 /* AppDelegate.swift */; };
+		D819420E21F2994D0027DFA7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D819420D21F2994D0027DFA7 /* ViewController.swift */; };
+		D819421121F2994D0027DFA7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D819420F21F2994D0027DFA7 /* Main.storyboard */; };
+		D819421321F2994F0027DFA7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D819421221F2994F0027DFA7 /* Assets.xcassets */; };
+		D819421621F2994F0027DFA7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D819421421F2994F0027DFA7 /* LaunchScreen.storyboard */; };
+		D819422121F2994F0027DFA7 /* VerkadaChallengeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D819422021F2994F0027DFA7 /* VerkadaChallengeTests.swift */; };
+		D819422C21F2994F0027DFA7 /* VerkadaChallengeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D819422B21F2994F0027DFA7 /* VerkadaChallengeUITests.swift */; };
+		D819423C21F299AD0027DFA7 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D819423B21F299AD0027DFA7 /* Constants.swift */; };
+		D819423E21F29A550027DFA7 /* MotionAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D819423D21F29A550027DFA7 /* MotionAPI.swift */; };
+		D819424021F29C210027DFA7 /* MotionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D819423F21F29C210027DFA7 /* MotionCell.swift */; };
+		D819424221F2B5DD0027DFA7 /* DateUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = D819424121F2B5DD0027DFA7 /* DateUtil.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D819421D21F2994F0027DFA7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D819420021F2994D0027DFA7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D819420721F2994D0027DFA7;
+			remoteInfo = VerkadaChallenge;
+		};
+		D819422821F2994F0027DFA7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D819420021F2994D0027DFA7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D819420721F2994D0027DFA7;
+			remoteInfo = VerkadaChallenge;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		D819420821F2994D0027DFA7 /* VerkadaChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VerkadaChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D819420B21F2994D0027DFA7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		D819420D21F2994D0027DFA7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		D819421021F2994D0027DFA7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		D819421221F2994F0027DFA7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D819421521F2994F0027DFA7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		D819421721F2994F0027DFA7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D819421C21F2994F0027DFA7 /* VerkadaChallengeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VerkadaChallengeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D819422021F2994F0027DFA7 /* VerkadaChallengeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerkadaChallengeTests.swift; sourceTree = "<group>"; };
+		D819422221F2994F0027DFA7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D819422721F2994F0027DFA7 /* VerkadaChallengeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VerkadaChallengeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D819422B21F2994F0027DFA7 /* VerkadaChallengeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerkadaChallengeUITests.swift; sourceTree = "<group>"; };
+		D819422D21F2994F0027DFA7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D819423B21F299AD0027DFA7 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		D819423D21F29A550027DFA7 /* MotionAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionAPI.swift; sourceTree = "<group>"; };
+		D819423F21F29C210027DFA7 /* MotionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionCell.swift; sourceTree = "<group>"; };
+		D819424121F2B5DD0027DFA7 /* DateUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtil.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D819420521F2994D0027DFA7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D819421921F2994F0027DFA7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D819422421F2994F0027DFA7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D81941FF21F2994D0027DFA7 = {
+			isa = PBXGroup;
+			children = (
+				D819420A21F2994D0027DFA7 /* VerkadaChallenge */,
+				D819421F21F2994F0027DFA7 /* VerkadaChallengeTests */,
+				D819422A21F2994F0027DFA7 /* VerkadaChallengeUITests */,
+				D819420921F2994D0027DFA7 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D819420921F2994D0027DFA7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D819420821F2994D0027DFA7 /* VerkadaChallenge.app */,
+				D819421C21F2994F0027DFA7 /* VerkadaChallengeTests.xctest */,
+				D819422721F2994F0027DFA7 /* VerkadaChallengeUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D819420A21F2994D0027DFA7 /* VerkadaChallenge */ = {
+			isa = PBXGroup;
+			children = (
+				D819423A21F299810027DFA7 /* API */,
+				D819423921F299690027DFA7 /* Utility */,
+				D819420B21F2994D0027DFA7 /* AppDelegate.swift */,
+				D819420D21F2994D0027DFA7 /* ViewController.swift */,
+				D819420F21F2994D0027DFA7 /* Main.storyboard */,
+				D819421221F2994F0027DFA7 /* Assets.xcassets */,
+				D819421421F2994F0027DFA7 /* LaunchScreen.storyboard */,
+				D819421721F2994F0027DFA7 /* Info.plist */,
+			);
+			path = VerkadaChallenge;
+			sourceTree = "<group>";
+		};
+		D819421F21F2994F0027DFA7 /* VerkadaChallengeTests */ = {
+			isa = PBXGroup;
+			children = (
+				D819422021F2994F0027DFA7 /* VerkadaChallengeTests.swift */,
+				D819422221F2994F0027DFA7 /* Info.plist */,
+			);
+			path = VerkadaChallengeTests;
+			sourceTree = "<group>";
+		};
+		D819422A21F2994F0027DFA7 /* VerkadaChallengeUITests */ = {
+			isa = PBXGroup;
+			children = (
+				D819422B21F2994F0027DFA7 /* VerkadaChallengeUITests.swift */,
+				D819422D21F2994F0027DFA7 /* Info.plist */,
+			);
+			path = VerkadaChallengeUITests;
+			sourceTree = "<group>";
+		};
+		D819423921F299690027DFA7 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				D819424121F2B5DD0027DFA7 /* DateUtil.swift */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
+		D819423A21F299810027DFA7 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				D819423B21F299AD0027DFA7 /* Constants.swift */,
+				D819423D21F29A550027DFA7 /* MotionAPI.swift */,
+				D819423F21F29C210027DFA7 /* MotionCell.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D819420721F2994D0027DFA7 /* VerkadaChallenge */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D819423021F2994F0027DFA7 /* Build configuration list for PBXNativeTarget "VerkadaChallenge" */;
+			buildPhases = (
+				D819420421F2994D0027DFA7 /* Sources */,
+				D819420521F2994D0027DFA7 /* Frameworks */,
+				D819420621F2994D0027DFA7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = VerkadaChallenge;
+			productName = VerkadaChallenge;
+			productReference = D819420821F2994D0027DFA7 /* VerkadaChallenge.app */;
+			productType = "com.apple.product-type.application";
+		};
+		D819421B21F2994F0027DFA7 /* VerkadaChallengeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D819423321F2994F0027DFA7 /* Build configuration list for PBXNativeTarget "VerkadaChallengeTests" */;
+			buildPhases = (
+				D819421821F2994F0027DFA7 /* Sources */,
+				D819421921F2994F0027DFA7 /* Frameworks */,
+				D819421A21F2994F0027DFA7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D819421E21F2994F0027DFA7 /* PBXTargetDependency */,
+			);
+			name = VerkadaChallengeTests;
+			productName = VerkadaChallengeTests;
+			productReference = D819421C21F2994F0027DFA7 /* VerkadaChallengeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		D819422621F2994F0027DFA7 /* VerkadaChallengeUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D819423621F2994F0027DFA7 /* Build configuration list for PBXNativeTarget "VerkadaChallengeUITests" */;
+			buildPhases = (
+				D819422321F2994F0027DFA7 /* Sources */,
+				D819422421F2994F0027DFA7 /* Frameworks */,
+				D819422521F2994F0027DFA7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D819422921F2994F0027DFA7 /* PBXTargetDependency */,
+			);
+			name = VerkadaChallengeUITests;
+			productName = VerkadaChallengeUITests;
+			productReference = D819422721F2994F0027DFA7 /* VerkadaChallengeUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D819420021F2994D0027DFA7 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1000;
+				LastUpgradeCheck = 1000;
+				ORGANIZATIONNAME = "Woody Lee";
+				TargetAttributes = {
+					D819420721F2994D0027DFA7 = {
+						CreatedOnToolsVersion = 10.0;
+					};
+					D819421B21F2994F0027DFA7 = {
+						CreatedOnToolsVersion = 10.0;
+						TestTargetID = D819420721F2994D0027DFA7;
+					};
+					D819422621F2994F0027DFA7 = {
+						CreatedOnToolsVersion = 10.0;
+						TestTargetID = D819420721F2994D0027DFA7;
+					};
+				};
+			};
+			buildConfigurationList = D819420321F2994D0027DFA7 /* Build configuration list for PBXProject "VerkadaChallenge" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = D81941FF21F2994D0027DFA7;
+			productRefGroup = D819420921F2994D0027DFA7 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D819420721F2994D0027DFA7 /* VerkadaChallenge */,
+				D819421B21F2994F0027DFA7 /* VerkadaChallengeTests */,
+				D819422621F2994F0027DFA7 /* VerkadaChallengeUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D819420621F2994D0027DFA7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D819421621F2994F0027DFA7 /* LaunchScreen.storyboard in Resources */,
+				D819421321F2994F0027DFA7 /* Assets.xcassets in Resources */,
+				D819421121F2994D0027DFA7 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D819421A21F2994F0027DFA7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D819422521F2994F0027DFA7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D819420421F2994D0027DFA7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D819420E21F2994D0027DFA7 /* ViewController.swift in Sources */,
+				D819420C21F2994D0027DFA7 /* AppDelegate.swift in Sources */,
+				D819424021F29C210027DFA7 /* MotionCell.swift in Sources */,
+				D819424221F2B5DD0027DFA7 /* DateUtil.swift in Sources */,
+				D819423E21F29A550027DFA7 /* MotionAPI.swift in Sources */,
+				D819423C21F299AD0027DFA7 /* Constants.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D819421821F2994F0027DFA7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D819422121F2994F0027DFA7 /* VerkadaChallengeTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D819422321F2994F0027DFA7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D819422C21F2994F0027DFA7 /* VerkadaChallengeUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D819421E21F2994F0027DFA7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D819420721F2994D0027DFA7 /* VerkadaChallenge */;
+			targetProxy = D819421D21F2994F0027DFA7 /* PBXContainerItemProxy */;
+		};
+		D819422921F2994F0027DFA7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D819420721F2994D0027DFA7 /* VerkadaChallenge */;
+			targetProxy = D819422821F2994F0027DFA7 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		D819420F21F2994D0027DFA7 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D819421021F2994D0027DFA7 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		D819421421F2994F0027DFA7 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D819421521F2994F0027DFA7 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D819422E21F2994F0027DFA7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		D819422F21F2994F0027DFA7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D819423121F2994F0027DFA7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = CR44M7Q587;
+				INFOPLIST_FILE = VerkadaChallenge/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ravenapp.VerkadaChallenge;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D819423221F2994F0027DFA7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = CR44M7Q587;
+				INFOPLIST_FILE = VerkadaChallenge/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ravenapp.VerkadaChallenge;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		D819423421F2994F0027DFA7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = CR44M7Q587;
+				INFOPLIST_FILE = VerkadaChallengeTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ravenapp.VerkadaChallengeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/VerkadaChallenge.app/VerkadaChallenge";
+			};
+			name = Debug;
+		};
+		D819423521F2994F0027DFA7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = CR44M7Q587;
+				INFOPLIST_FILE = VerkadaChallengeTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ravenapp.VerkadaChallengeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/VerkadaChallenge.app/VerkadaChallenge";
+			};
+			name = Release;
+		};
+		D819423721F2994F0027DFA7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = CR44M7Q587;
+				INFOPLIST_FILE = VerkadaChallengeUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ravenapp.VerkadaChallengeUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = VerkadaChallenge;
+			};
+			name = Debug;
+		};
+		D819423821F2994F0027DFA7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = CR44M7Q587;
+				INFOPLIST_FILE = VerkadaChallengeUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ravenapp.VerkadaChallengeUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = VerkadaChallenge;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D819420321F2994D0027DFA7 /* Build configuration list for PBXProject "VerkadaChallenge" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D819422E21F2994F0027DFA7 /* Debug */,
+				D819422F21F2994F0027DFA7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D819423021F2994F0027DFA7 /* Build configuration list for PBXNativeTarget "VerkadaChallenge" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D819423121F2994F0027DFA7 /* Debug */,
+				D819423221F2994F0027DFA7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D819423321F2994F0027DFA7 /* Build configuration list for PBXNativeTarget "VerkadaChallengeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D819423421F2994F0027DFA7 /* Debug */,
+				D819423521F2994F0027DFA7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D819423621F2994F0027DFA7 /* Build configuration list for PBXNativeTarget "VerkadaChallengeUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D819423721F2994F0027DFA7 /* Debug */,
+				D819423821F2994F0027DFA7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D819420021F2994D0027DFA7 /* Project object */;
+}
