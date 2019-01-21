@@ -8,12 +8,14 @@
 
 import Foundation
 
+// Server Information
 public let APIServer = "http://ec2-54-187-236-58.us-west-2.compute.amazonaws.com:8021"
 public let ImageResult = "/ios/thumbnail/"
 public let SearchQuery = "/ios/search"
 
-public let MinX = 0
-public let MinY = 0
-public let MaxX = 9
-public let MaxY = 9
-public let TotalGrid = ((MinX + MaxX) + 1) * ((MinY + MinY) + 1)
+// Grid Information
+public let NumRow = 10
+public let NumCol = 10
+public let TotalGrid = NumRow * NumCol
+
+public let GridReuse = "GridID"
