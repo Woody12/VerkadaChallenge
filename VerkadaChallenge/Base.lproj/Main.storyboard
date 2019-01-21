@@ -52,13 +52,17 @@
                                 </connections>
                             </containerView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FVe-hR-CLn">
-                                <rect key="frame" x="16" y="300.66666666666669" width="48" height="30"/>
+                                <rect key="frame" x="16" y="300.66666666666669" width="54" height="33"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <state key="normal" title="Search"/>
+                                <connections>
+                                    <action selector="searchClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ccl-Km-AQ7"/>
+                                </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X3S-FY-QvP">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X3S-FY-QvP">
                                 <rect key="frame" x="179" y="305.66666666666669" width="219" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -90,8 +94,10 @@
                     </view>
                     <connections>
                         <outlet property="camImageView" destination="Vpa-Mi-fF9" id="JTZ-ht-AtV"/>
+                        <outlet property="camInfoLabel" destination="X3S-FY-QvP" id="Y3t-kW-JY6"/>
                         <outlet property="containerView" destination="PTr-8u-hXx" id="AtR-Ma-25H"/>
                         <outlet property="gridCollectionView" destination="X1t-fQ-Bzr" id="zXU-f5-Sm6"/>
+                        <outlet property="searchButton" destination="FVe-hR-CLn" id="gy2-N1-zmd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

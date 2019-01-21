@@ -14,11 +14,12 @@ class HomeViewController: UIViewController, HomeViewProtocol {
 	@IBOutlet weak var camImageView: UIImageView!
 	@IBOutlet weak var containerView: UIView!
 	@IBOutlet weak var gridCollectionView: UICollectionView!
+	@IBOutlet weak var searchButton: UIButton!
+	@IBOutlet weak var camInfoLabel: UILabel!
 	
 	private var presenter = HomePresenter()
 	
-	private var tapGesture: UITapGestureRecognizer?
-	private var gridTapGesture: UITapGestureRecognizer?
+	private var isShowGrid = false
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -26,6 +27,30 @@ class HomeViewController: UIViewController, HomeViewProtocol {
 		initView()
 	}
 	
+	override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+		if UIDevice.current.orientation.isLandscape {
+			print("Landscape")
+		} else {
+			print("Portrait")
+		}
+		
+		// Reload the grid overlay
+		gridCollectionView.reloadData()
+	}
+	
+	@IBAction func searchClick(_ sender: Any) {
+		
+		if !isShowGrid {
+			showGrid()
+			searchButton.setTitle("Cancel", for: .normal)
+		} else {
+			hideGrid()
+			searchButton.setTitle("Search", for: .normal)
+		}
+		
+		// Toggle Flag
+		isShowGrid = !isShowGrid
+	}
 	
 	// Private Declaration
 	private func initView() {
@@ -34,11 +59,13 @@ class HomeViewController: UIViewController, HomeViewProtocol {
 		
 		gridCollectionView.allowsMultipleSelection = true
 		
-		tapGesture = UITapGestureRecognizer(target: self, action: #selector(clearSearch))
-		tapGesture?.cancelsTouchesInView = false   // Allow grid to be selected
+		let tapGesture = UITapGestureRecognizer(target: self, action: #selector(clearSearch))
+		tapGesture.cancelsTouchesInView = false   // Allow grid to be selected
 		
-		gridTapGesture = UITapGestureRecognizer(target: self, action: #selector(showGrid))
-		camImageView.addGestureRecognizer(gridTapGesture!)
+		let gridTapGesture = UITapGestureRecognizer(target: self, action: #selector(showGrid))
+		camImageView.addGestureRecognizer(gridTapGesture)
+		
+		camInfoLabel.text = "01/12/2019 02:17am"
 	}
 	
 	private func selectGrid(at cell: UICollectionViewCell?) {
@@ -57,10 +84,6 @@ class HomeViewController: UIViewController, HomeViewProtocol {
 		UIView.animate(withDuration: 0.25) {
 			self.gridCollectionView.alpha = 0
 		}
-		
-		// Add gesture to show grid & remove from view
-		self.camImageView.addGestureRecognizer(gridTapGesture!)
-		self.view.removeGestureRecognizer(tapGesture!)
 	}
 	
 	@objc
@@ -77,9 +100,6 @@ class HomeViewController: UIViewController, HomeViewProtocol {
 			self.gridCollectionView.alpha = 1.0
 		}
 		
-		// Remove gesture not to show grid when tap
-		self.camImageView.removeGestureRecognizer(gridTapGesture!)
-		//self.view.addGestureRecognizer(tapGesture!)
 	}
 }
 
