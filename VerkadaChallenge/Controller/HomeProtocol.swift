@@ -8,6 +8,10 @@
 
 import Foundation
 
+protocol HomeViewProtocol {
+	
+}
+
 protocol HomePresenterProtocol {
 	func storeGrid(gridX: Int, gridY: Int)
 	func removeGrid(gridX: Int, gridY: Int)
