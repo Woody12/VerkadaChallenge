@@ -10,7 +10,7 @@ import Foundation
 
 class MotionAPI: NSObject {
 	
-	public func searchMotion(motionCells: [MotionCell]?, startTimeSec: Double?, endTimeSec: Double?) {
+	public func searchMotion(motionCells: [MotionCell]?, startTimeSec: Double?, endTimeSec: Double?, completionHandler: @escaping MotionHandler) {
 	
 		// Construct parameters
 		guard let paramString = createSearchParameters(motionCells: motionCells, startTimeSec: startTimeSec, endTimeSec: endTimeSec) else {
@@ -38,11 +38,12 @@ class MotionAPI: NSObject {
 					if let jsonResult = jsonSerialized,
 						let motionZones = jsonResult["motionAt"] as? [[Int]] {
 						
-						motionZones.forEach({ (motionCoord) in
-							let motionCell = MotionCell(x: motionCoord[0], y: motionCoord[1])
-							print("motionCoord is \(String(describing: motionCell))")
-						})
+//						motionZones.forEach({ (motionCoord) in
+//							let motionCell = MotionCell(x: motionCoord[0], y: motionCoord[1])
+//							print("motionCoord is \(String(describing: motionCell))")
+//						})
 						
+						completionHandler(true, motionZones)
 						print("next end time sec is \(String(describing: jsonResult["nextEndTimeSec"]))")
 					}
 					

@@ -10,7 +10,6 @@ import UIKit
 
 class HomeViewController: UIViewController, HomeViewProtocol {
 	
-	
 	@IBOutlet weak var camImageView: UIImageView!
 	@IBOutlet weak var containerView: UIView!
 	@IBOutlet weak var cancelSearchView: UIView!
@@ -18,7 +17,7 @@ class HomeViewController: UIViewController, HomeViewProtocol {
 	@IBOutlet weak var searchButton: UIButton!
 	@IBOutlet weak var camInfoLabel: UILabel!
 	
-	private var presenter: HomePresenterProtocol = HomePresenter()
+	internal var presenter: HomePresenterProtocol? = HomePresenter()
 	private var thumbnailViewController: ThumbnailViewController!
 	
 	private var isShowGrid = false
@@ -57,10 +56,16 @@ class HomeViewController: UIViewController, HomeViewProtocol {
 		}
 	}
 	
+	// Public Declaration
+	
+	public func displayNoResult() {
+		
+	}
+	
 	// Private Declaration
 	private func initView() {
-		presenter.homeView = self
-		presenter.search()
+		presenter?.homeView = self
+		presenter?.search()
 		
 		gridCollectionView.allowsMultipleSelection = true
 		
@@ -154,7 +159,7 @@ class HomeViewController: UIViewController, HomeViewProtocol {
 	func clearSearch() {
 		
 		// Reset Search
-		presenter.clearSearch()
+		presenter?.clearSearch()
 		hideGrid()
 		isShowGrid = false
 		searchButton.setTitle("Motion Search", for: .normal)
@@ -225,7 +230,7 @@ extension HomeViewController: UICollectionViewDelegate {
 		// Store selected grid cell
 		let gridX = indexPath.row / NumRow
 		let gridY = indexPath.row % NumRow
-		presenter.storeGrid(gridX: gridX, gridY: gridY)
+		presenter?.storeGrid(gridX: gridX, gridY: gridY)
 		
 		let cell = collectionView.cellForItem(at: indexPath)
 		selectGrid(at: cell)
@@ -236,7 +241,7 @@ extension HomeViewController: UICollectionViewDelegate {
 		// Remove selected grid cell
 		let gridX = indexPath.row / NumRow
 		let gridY = indexPath.row % NumRow
-		presenter.removeGrid(gridX: gridX, gridY: gridY)
+		presenter?.removeGrid(gridX: gridX, gridY: gridY)
 		
 		let cell = collectionView.cellForItem(at: indexPath)
 		deSelectGrid(at: cell)

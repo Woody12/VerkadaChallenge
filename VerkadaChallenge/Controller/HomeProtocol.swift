@@ -8,12 +8,14 @@
 
 import Foundation
 
-protocol HomeViewProtocol {
+protocol HomeViewProtocol: class {
+	var presenter: HomePresenterProtocol? { get set }
 	
+	func displayNoResult()
 }
 
-protocol HomePresenterProtocol {
-	var homeView: HomeViewController? { get set }
+protocol HomePresenterProtocol: class {
+	var homeView: HomeViewProtocol? { get set }
 	
 	func search()
 	func storeGrid(gridX: Int, gridY: Int)

@@ -8,11 +8,14 @@
 
 import Foundation
 
+typealias MotionHandler = ((_ status: Bool, _ motionResult: [[Int]]) -> Void)
+
 class HomePresenter: HomePresenterProtocol {
 	
-	public weak var homeView: HomeViewController?
+	weak var homeView: HomeViewProtocol?
 	
 	private var motionCells = [MotionCell]()
+	private var motionResults = [MotionResult]()
 	
 	public func search() {
 		let motionAPI = MotionAPI()
@@ -20,7 +23,21 @@ class HomePresenter: HomePresenterProtocol {
 		let motionCell2 = MotionCell(x: 0, y: 5)
 		let motionCells = [motionCell1, motionCell2]
 		
-		motionAPI.searchMotion(motionCells: motionCells, startTimeSec: 1547848281, endTimeSec: 1547851881)
+		motionAPI.searchMotion(motionCells: motionCells, startTimeSec: 1547848281, endTimeSec: 1547851881) { (status, motionZones: [[Int]]) in
+			
+			if status {
+				motionZones.forEach({ (motionCoord) in
+					let motionResult = MotionResult(dateUTC: motionCoord[0], duration: motionCoord[1])
+					print("motionCoord is \(String(describing: motionResult))")
+					
+					// Store the result
+					self.motionResults.append(motionResult)
+				})
+			} else {
+				self.homeView?.displayNoResult()
+			}
+			
+		}
 	}
 	
 	public func storeGrid(gridX: Int, gridY: Int) {
