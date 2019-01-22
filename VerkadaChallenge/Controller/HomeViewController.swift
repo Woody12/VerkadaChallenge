@@ -13,6 +13,7 @@ class HomeViewController: UIViewController, HomeViewProtocol {
 	
 	@IBOutlet weak var camImageView: UIImageView!
 	@IBOutlet weak var containerView: UIView!
+	@IBOutlet weak var cancelSearchView: UIView!
 	@IBOutlet weak var gridCollectionView: UICollectionView!
 	@IBOutlet weak var searchButton: UIButton!
 	@IBOutlet weak var camInfoLabel: UILabel!
@@ -41,15 +42,10 @@ class HomeViewController: UIViewController, HomeViewProtocol {
 	@IBAction func searchClick(_ sender: Any) {
 		
 		if !isShowGrid {
-			showGrid()
-			searchButton.setTitle("Cancel", for: .normal)
+			setupMotionSearch()
 		} else {
-			hideGrid()
-			searchButton.setTitle("Search", for: .normal)
+			showDateTimePicker()
 		}
-		
-		// Toggle Flag
-		isShowGrid = !isShowGrid
 	}
 	
 	// Private Declaration
@@ -61,11 +57,59 @@ class HomeViewController: UIViewController, HomeViewProtocol {
 		
 		let tapGesture = UITapGestureRecognizer(target: self, action: #selector(clearSearch))
 		tapGesture.cancelsTouchesInView = false   // Allow grid to be selected
+		cancelSearchView.addGestureRecognizer(tapGesture)
 		
-		let gridTapGesture = UITapGestureRecognizer(target: self, action: #selector(showGrid))
+		let gridTapGesture = UITapGestureRecognizer(target: self, action: #selector(setupMotionSearch))
 		camImageView.addGestureRecognizer(gridTapGesture)
 		
-		camInfoLabel.text = "01/12/2019 02:17am"
+		camInfoLabel.text = Date.display(dateStyle: .medium, timeStyle: .medium, date: Date())
+	}
+	
+	private func showDateTimePicker()  {
+		
+		// Initialize date time picker
+		let dateTimePicker = setupDatePicker()
+		
+		// Add to actionsheetview
+		let alertController = UIAlertController(title: "Date and Time Range Selection", message:" " , preferredStyle: .actionSheet)
+		
+		alertController.view.addSubview(dateTimePicker)
+		
+		let doneAction = UIAlertAction(title: "Done", style: .cancel) { (action) in
+			self.datePickDone(datePicker: dateTimePicker)
+		}
+		
+		//add button to action sheet
+		alertController.addAction(doneAction)
+		
+		let height = NSLayoutConstraint(item: alertController.view, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 300)
+		alertController.view.addConstraint(height);
+		
+		self.present(alertController, animated: true, completion: nil)
+		
+	}
+	
+	private func setupDatePicker() -> UIDatePicker {
+		
+		// Setup date selection from today to last 12 months
+		
+		let currentDate: Date = Date()
+		var calendar: Calendar = Calendar(identifier: Calendar.Identifier.gregorian)
+		calendar.timeZone = TimeZone(identifier: "UTC")!
+		
+		var components: DateComponents = DateComponents()
+		components.calendar = calendar
+		components.year = -1 // Back one year
+		let minDate: Date = calendar.date(byAdding: components, to: currentDate)!
+		
+		let dateTimePicker = UIDatePicker(frame: CGRect(x: 0, y: 40, width: self.view.frame.size.width, height: 200))
+		
+		dateTimePicker.datePickerMode = UIDatePicker.Mode.dateAndTime
+		dateTimePicker.addTarget(self, action: #selector(dateSelected(datePicker:)), for: .valueChanged)
+		dateTimePicker.minimumDate = minDate
+		dateTimePicker.maximumDate = Date() // Today Date
+		
+		return dateTimePicker
 	}
 	
 	private func selectGrid(at cell: UICollectionViewCell?) {
@@ -80,26 +124,51 @@ class HomeViewController: UIViewController, HomeViewProtocol {
 		cell?.contentView.layer.backgroundColor = UIColor.blue.cgColor
 	}
 	
+	private func showGrid() {
+		UIView.animate(withDuration: 0.25) {
+			self.gridCollectionView.alpha = 1.0
+		}
+	}
+	
 	private func hideGrid() {
 		UIView.animate(withDuration: 0.25) {
 			self.gridCollectionView.alpha = 0
 		}
 	}
 	
+	// Event Handler
+	
 	@objc
 	func clearSearch() {
+		
+		// Reset Search
 		presenter.clearSearch()
 		hideGrid()
-		view.endEditing(true)
+		isShowGrid = false
+		searchButton.setTitle("Motion Search", for: .normal)
 		
+		// Clear grid selection
+		gridCollectionView.reloadData()
 	}
 	
 	@objc
-	func showGrid() {
-		UIView.animate(withDuration: 0.25) {
-			self.gridCollectionView.alpha = 1.0
-		}
+	func setupMotionSearch() {
+		showGrid()
+		searchButton.setTitle("Date Range", for: .normal)
 		
+		// Set Flag
+		isShowGrid = true
+	}
+	
+	@objc
+	func dateSelected(datePicker: UIDatePicker) {
+		camInfoLabel.text =	Date.display(dateStyle: .medium, timeStyle: .medium, date: datePicker.date)
+	}
+	
+	@objc
+	func datePickDone(datePicker: UIDatePicker) {
+		dateSelected(datePicker: datePicker)
+		clearSearch()
 	}
 }
 

@@ -17,6 +17,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dpq-7p-FWN">
+                                <rect key="frame" x="0.0" y="40" width="414" height="736"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                             <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Vpa-Mi-fF9">
                                 <rect key="frame" x="16" y="59.999999999999986" width="382" height="220.66666666666663"/>
                                 <color key="backgroundColor" red="0.14673659449193011" green="0.17544520986707157" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -52,9 +56,9 @@
                                 </connections>
                             </containerView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FVe-hR-CLn">
-                                <rect key="frame" x="16" y="300.66666666666669" width="54" height="33"/>
+                                <rect key="frame" x="16" y="300.66666666666669" width="111" height="33"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <state key="normal" title="Search"/>
+                                <state key="normal" title="Motion Search"/>
                                 <connections>
                                     <action selector="searchClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ccl-Km-AQ7"/>
                                 </connections>
@@ -71,7 +75,9 @@
                             <constraint firstItem="X3S-FY-QvP" firstAttribute="top" secondItem="Vpa-Mi-fF9" secondAttribute="bottom" constant="25" id="0FA-Yj-7oJ"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="X3S-FY-QvP" secondAttribute="trailing" constant="16" id="2wf-MT-Jtd"/>
                             <constraint firstItem="Vpa-Mi-fF9" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="4Ae-63-heO"/>
+                            <constraint firstItem="dpq-7p-FWN" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="IVZ-X9-tpl"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Vpa-Mi-fF9" secondAttribute="trailing" constant="16" id="K6X-24-y0k"/>
+                            <constraint firstItem="dpq-7p-FWN" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="Lmn-hs-UkA"/>
                             <constraint firstItem="X1t-fQ-Bzr" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="40" id="Q9g-8K-SEd"/>
                             <constraint firstItem="X1t-fQ-Bzr" firstAttribute="height" secondItem="Vpa-Mi-fF9" secondAttribute="height" id="RIH-t6-cbt"/>
                             <constraint firstItem="FVe-hR-CLn" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="SiQ-6h-cAI"/>
@@ -86,15 +92,18 @@
                                 <variation key="heightClass=compact" constant="-50"/>
                             </constraint>
                             <constraint firstItem="X3S-FY-QvP" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="FVe-hR-CLn" secondAttribute="trailing" constant="8" symbolic="YES" id="oSj-0W-VYI"/>
+                            <constraint firstItem="dpq-7p-FWN" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="r0F-XH-ZFg"/>
                             <constraint firstItem="PTr-8u-hXx" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="rNO-uh-f2F"/>
                             <constraint firstItem="X1t-fQ-Bzr" firstAttribute="width" secondItem="Vpa-Mi-fF9" secondAttribute="width" id="v2P-06-Z1B"/>
                             <constraint firstItem="Vpa-Mi-fF9" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.3" id="vIM-Ze-OLe"/>
+                            <constraint firstItem="dpq-7p-FWN" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="xgp-lo-Zgr"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
                         <outlet property="camImageView" destination="Vpa-Mi-fF9" id="JTZ-ht-AtV"/>
                         <outlet property="camInfoLabel" destination="X3S-FY-QvP" id="Y3t-kW-JY6"/>
+                        <outlet property="cancelSearchView" destination="dpq-7p-FWN" id="Rra-A1-J3T"/>
                         <outlet property="containerView" destination="PTr-8u-hXx" id="AtR-Ma-25H"/>
                         <outlet property="gridCollectionView" destination="X1t-fQ-Bzr" id="zXU-f5-Sm6"/>
                         <outlet property="searchButton" destination="FVe-hR-CLn" id="gy2-N1-zmd"/>

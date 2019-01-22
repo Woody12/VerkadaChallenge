@@ -14,4 +14,19 @@ extension Date {
 	static func forLastHour() -> Date {
 		return Date(timeInterval: -1 * LastHrMilliSec, since: Date())
 	}
+	
+	static func display(dateStyle: DateFormatter.Style = .long, timeStyle: DateFormatter.Style = .long, date: Date) -> String {
+		//"01/12/2019 02:17am"
+		
+		let dateFormatter = DateFormatter()
+		dateFormatter.dateStyle = dateStyle
+		
+		let timeFormatter = DateFormatter()
+		timeFormatter.timeStyle = timeStyle
+		
+		let dateSelected = dateFormatter.string(from: date)
+		let timeSelected = timeFormatter.string(from: date)
+		
+		return(dateSelected + " " + timeSelected)
+	}
 }
