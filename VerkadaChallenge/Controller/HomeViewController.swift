@@ -18,7 +18,8 @@ class HomeViewController: UIViewController, HomeViewProtocol {
 	@IBOutlet weak var searchButton: UIButton!
 	@IBOutlet weak var camInfoLabel: UILabel!
 	
-	private var presenter = HomePresenter()
+	private var presenter: HomePresenterProtocol = HomePresenter()
+	private var thumbnailViewController: ThumbnailViewController!
 	
 	private var isShowGrid = false
 	
@@ -37,6 +38,14 @@ class HomeViewController: UIViewController, HomeViewProtocol {
 		
 		// Reload the grid overlay
 		gridCollectionView.reloadData()
+	}
+	
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+		
+		// Connect to ContainerView
+		if segue.identifier == EmbedSegue {
+			thumbnailViewController = segue.destination as? ThumbnailViewController
+		}
 	}
 	
 	@IBAction func searchClick(_ sender: Any) {
@@ -63,6 +72,9 @@ class HomeViewController: UIViewController, HomeViewProtocol {
 		camImageView.addGestureRecognizer(gridTapGesture)
 		
 		camInfoLabel.text = Date.display(dateStyle: .medium, timeStyle: .medium, date: Date())
+		
+		// test
+		thumbnailViewController.numberOfThumbnails = 10
 	}
 	
 	private func showDateTimePicker()  {

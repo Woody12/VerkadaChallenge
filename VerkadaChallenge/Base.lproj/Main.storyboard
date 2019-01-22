@@ -52,7 +52,7 @@
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PTr-8u-hXx">
                                 <rect key="frame" x="16" y="383" width="382" height="338"/>
                                 <connections>
-                                    <segue destination="u9Z-3K-aWq" kind="embed" id="Gmb-nl-Oeb"/>
+                                    <segue destination="u9Z-3K-aWq" kind="embed" identifier="EmbedContainerID" id="Gmb-nl-Oeb"/>
                                 </connections>
                             </containerView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FVe-hR-CLn">
@@ -113,16 +113,16 @@
             </objects>
             <point key="canvasLocation" x="135.19999999999999" y="97.601199400299862"/>
         </scene>
-        <!--View Controller-->
+        <!--Thumbnail View Controller-->
         <scene sceneID="jfE-qe-tOL">
             <objects>
-                <viewController id="u9Z-3K-aWq" sceneMemberID="viewController">
+                <viewController id="u9Z-3K-aWq" customClass="ThumbnailViewController" customModule="VerkadaChallenge" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" id="NQT-Do-RPJ">
                         <rect key="frame" x="0.0" y="0.0" width="382" height="338"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="aeP-Pn-EzR">
-                                <rect key="frame" x="0.0" y="0.0" width="382" height="338"/>
+                                <rect key="frame" x="10" y="10" width="362" height="318"/>
                                 <color key="backgroundColor" red="0.80967881939999997" green="0.22352941179999999" blue="0.22352941179999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="knf-Ww-nXe">
                                     <size key="itemSize" width="50" height="50"/>
@@ -140,17 +140,24 @@
                                         </view>
                                     </collectionViewCell>
                                 </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="u9Z-3K-aWq" id="fwN-eP-d1B"/>
+                                    <outlet property="delegate" destination="u9Z-3K-aWq" id="24Q-eb-sEK"/>
+                                </connections>
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="aeP-Pn-EzR" firstAttribute="width" secondItem="NQT-Do-RPJ" secondAttribute="width" id="1ws-bH-Pwj"/>
+                            <constraint firstItem="aeP-Pn-EzR" firstAttribute="width" secondItem="NQT-Do-RPJ" secondAttribute="width" constant="-20" id="1ws-bH-Pwj"/>
                             <constraint firstItem="aeP-Pn-EzR" firstAttribute="centerY" secondItem="NQT-Do-RPJ" secondAttribute="centerY" id="aTr-sd-DgM"/>
                             <constraint firstItem="aeP-Pn-EzR" firstAttribute="centerX" secondItem="NQT-Do-RPJ" secondAttribute="centerX" id="gbe-Eb-sie"/>
-                            <constraint firstItem="aeP-Pn-EzR" firstAttribute="height" secondItem="NQT-Do-RPJ" secondAttribute="height" id="qzr-2q-ekD"/>
+                            <constraint firstItem="aeP-Pn-EzR" firstAttribute="height" secondItem="NQT-Do-RPJ" secondAttribute="height" constant="-20" id="qzr-2q-ekD"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="iP5-Rk-dri"/>
                     </view>
+                    <connections>
+                        <outlet property="thumbnailCollectionView" destination="aeP-Pn-EzR" id="Owb-Lk-h31"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DDw-Ec-hWV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

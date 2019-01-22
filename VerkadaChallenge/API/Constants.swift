@@ -19,3 +19,5 @@ public let NumCol = 10
 public let TotalGrid = NumRow * NumCol
 
 public let GridReuse = "GridID"
+public let ThumbnailReuse = "MotionCollectionID"
+public let EmbedSegue = "EmbedContainerID"
