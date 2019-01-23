@@ -20,7 +20,7 @@ protocol HomeViewProtocol: class {
 protocol HomePresenterProtocol: class {
 	var homeView: HomeViewProtocol? { get set }
 	
-	func search()
+	func search(startTimeDate: Date, endTimeDate: Date)
 	func storeGrid(gridX: Int, gridY: Int)
 	func removeGrid(gridX: Int, gridY: Int)
 	func clearSearch()

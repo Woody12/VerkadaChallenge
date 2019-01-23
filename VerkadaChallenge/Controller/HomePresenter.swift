@@ -19,15 +19,30 @@ class HomePresenter: HomePresenterProtocol {
 	private var motionResults = [MotionResult]()
 	private let motionAPI = MotionAPI()
 	
-	public func search() {
-		let motionCell1 = MotionCell(x: 0, y: 3)
-		let motionCell2 = MotionCell(x: 0, y: 5)
-		let motionCells = [motionCell1, motionCell2]
+
+	public func search(startTimeDate: Date, endTimeDate: Date) {
+//		let motionCell1 = MotionCell(x: 0, y: 3)
+//		let motionCell2 = MotionCell(x: 0, y: 5)
+		//let motionCells = [motionCell1, motionCell2]
+		//1547848281
+		//1547851881
+		// Create Default motion grid
+		if motionCells.count == 0 {
+			let motionCell1 = MotionCell(x: 0, y: 3)
+			let motionCell2 = MotionCell(x: 0, y: 5)
+			motionCells.append(motionCell1)
+			motionCells.append(motionCell2)
+		}
+		//Param is {"motionZones":[[0,0],[0,1]],"startTimeSec": 1548176238,"endTimeSec": 1548179838}
 		
-		motionAPI.searchMotion(motionCells: motionCells, startTimeSec: 1547848281, endTimeSec: 1547851881) { (status, motionZones: [[Int]]) in
+		// Create UTC Date
+		let startTimeSec = startTimeDate.timeIntervalSince1970
+		let endTimeSec = endTimeDate.timeIntervalSince1970
+		
+		motionAPI.searchMotion(motionCells: motionCells, startTimeSec: startTimeSec, endTimeSec: endTimeSec) { (status, motionZones: [[Int]]) in
 			
 			// Check status to see whether if loaded successfully
-			if status {
+			if (status && motionZones.count > 0) {
 				motionZones.forEach({ (motionCoord) in
 					let motionResult = MotionResult(dateUTC: motionCoord[0], duration: motionCoord[1])
 					print("motionCoord is \(String(describing: motionResult))")

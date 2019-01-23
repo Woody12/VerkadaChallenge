@@ -64,11 +64,13 @@ class HomeViewController: UIViewController, HomeViewProtocol {
 	
 	public func displayNoResult() {
 		
-		let alertController = UIAlertController(title: "Motion API Result", message: "No images are found", preferredStyle: .alert)
-		let okAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-		
-		alertController.addAction(okAction)
-		present(alertController, animated: true, completion: nil)
+		DispatchQueue.main.async {
+			let alertController = UIAlertController(title: "Motion API Result", message: "No images are found", preferredStyle: .alert)
+			let okAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+			
+			alertController.addAction(okAction)
+			self.present(alertController, animated: true, completion: nil)
+		}
 	}
 	
 	public func displayCamImage(camImage: UIImage?) {
@@ -78,8 +80,10 @@ class HomeViewController: UIViewController, HomeViewProtocol {
 	// Private Declaration
 	private func initView() {
 		
+		// Setup Presenter and show current date and time with one hour lag
 		presenter?.homeView = self
-		presenter?.search()
+		let yesterday = Date(timeInterval: -24 * DefaultHourLag, since: Date())
+		presenter?.search(startTimeDate: yesterday, endTimeDate: Date(timeInterval: DefaultHourLag, since: yesterday))
 		
 		gridCollectionView.allowsMultipleSelection = true
 		
@@ -199,7 +203,7 @@ class HomeViewController: UIViewController, HomeViewProtocol {
 	@objc
 	func datePickDone(datePicker: UIDatePicker) {
 		dateSelected(datePicker: datePicker)
-		presenter?.search()
+		presenter?.search(startTimeDate: datePicker.date, endTimeDate: Date(timeInterval: DefaultHourLag, since: datePicker.date))
 		clearSearch()
 	}
 }
