@@ -26,20 +26,26 @@ class HomePresenter: HomePresenterProtocol {
 		//let motionCells = [motionCell1, motionCell2]
 		//1547848281
 		//1547851881
-		// Create Default motion grid
+		
+		// Determine whether to use Default motion grid (initial state) or
+		// User selected motion grid
+		var queryMotionGrid = [MotionCell]()
 		if motionCells.count == 0 {
 			let motionCell1 = MotionCell(x: 0, y: 3)
 			let motionCell2 = MotionCell(x: 0, y: 5)
-			motionCells.append(motionCell1)
-			motionCells.append(motionCell2)
+			queryMotionGrid.append(motionCell1)
+			queryMotionGrid.append(motionCell2)
+		} else {
+			queryMotionGrid = motionCells
 		}
+		
 		//Param is {"motionZones":[[0,0],[0,1]],"startTimeSec": 1548176238,"endTimeSec": 1548179838}
 		
 		// Create UTC Date
 		let startTimeSec = startTimeDate.timeIntervalSince1970
 		let endTimeSec = endTimeDate.timeIntervalSince1970
 		
-		motionAPI.searchMotion(motionCells: motionCells, startTimeSec: startTimeSec, endTimeSec: endTimeSec) { (status, motionZones: [[Int]]) in
+		motionAPI.searchMotion(motionCells: queryMotionGrid, startTimeSec: startTimeSec, endTimeSec: endTimeSec) { (status, motionZones: [[Int]]) in
 			
 			// Check status to see whether if loaded successfully
 			if (status && motionZones.count > 0) {

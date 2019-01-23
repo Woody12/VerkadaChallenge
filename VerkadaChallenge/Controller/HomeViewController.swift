@@ -197,7 +197,7 @@ class HomeViewController: UIViewController, HomeViewProtocol {
 	
 	@objc
 	func dateSelected(datePicker: UIDatePicker) {
-		camInfoLabel.text =	Date.display(dateStyle: .medium, timeStyle: .medium, date: datePicker.date)
+//		camInfoLabel.text =	Date.display(dateStyle: .medium, timeStyle: .medium, date: datePicker.date)
 	}
 	
 	@objc

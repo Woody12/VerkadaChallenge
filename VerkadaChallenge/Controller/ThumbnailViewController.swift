@@ -37,19 +37,22 @@ extension ThumbnailViewController: UICollectionViewDataSource {
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 		
 		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ThumbnailReuse, for: indexPath)
+		cell.layer.borderColor = UIColor.purple.cgColor
+		cell.layer.borderWidth = 2.0
 		
 		// Retrieve Image
 		if let parentController = parent as? HomeViewController {
 			if let imageData = parentController.presenter?.retrieveImage(index: indexPath.row) {
 				
 				// Display image
-				let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 50))
+				let imageView = UIImageView(frame: CGRect(x: 10, y: 0, width: 60, height: 50))
 				let camImage = UIImage(data: imageData)
 				imageView.image = camImage
-				imageView.contentMode = .scaleAspectFit
+				imageView.contentMode = .scaleAspectFill
 				cell.contentView.addSubview(imageView)
+				print("cell frame is \(cell.contentView.frame)")
 				
-				let infoLabel = UILabel(frame: CGRect(x: 20, y: 55, width: 100, height: 50))
+				let infoLabel = UILabel(frame: CGRect(x: 10, y: 55, width: 60, height: 50))
 				infoLabel.font = UIFont(name: "Helvetica", size: CGFloat(12.0))
 				infoLabel.numberOfLines = 3
 				infoLabel.lineBreakMode = .byWordWrapping
