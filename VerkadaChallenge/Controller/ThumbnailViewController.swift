@@ -37,7 +37,11 @@ extension ThumbnailViewController: UICollectionViewDataSource {
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 		
 		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ThumbnailReuse, for: indexPath)
-		cell.contentView.backgroundColor = UIColor.blue
+		
+		if let parentController = parent as? HomeViewController {
+			cell.contentView.backgroundColor = parentController.presenter?.retrieveImage(index: indexPath.row)
+		}
+		
 		return cell
 	}
 }

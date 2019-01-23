@@ -58,12 +58,22 @@ class HomeViewController: UIViewController, HomeViewProtocol {
 	
 	// Public Declaration
 	
+	public func reloadThumbnail(thumbnailCount: Int) {
+		thumbnailViewController.numberOfThumbnails = thumbnailCount
+	}
+	
 	public func displayNoResult() {
 		
+		let alertController = UIAlertController(title: "Motion API Result", message: "No images are found", preferredStyle: .alert)
+		let okAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+		
+		alertController.addAction(okAction)
+		present(alertController, animated: true, completion: nil)
 	}
 	
 	// Private Declaration
 	private func initView() {
+		
 		presenter?.homeView = self
 		presenter?.search()
 		

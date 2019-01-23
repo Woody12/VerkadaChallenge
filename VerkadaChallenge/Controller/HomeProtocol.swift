@@ -7,10 +7,12 @@
 //
 
 import Foundation
+import UIKit
 
 protocol HomeViewProtocol: class {
 	var presenter: HomePresenterProtocol? { get set }
 	
+	func reloadThumbnail(thumbnailCount: Int)
 	func displayNoResult()
 }
 
@@ -21,5 +23,7 @@ protocol HomePresenterProtocol: class {
 	func storeGrid(gridX: Int, gridY: Int)
 	func removeGrid(gridX: Int, gridY: Int)
 	func clearSearch()
+	
+	func retrieveImage(index: Int) -> UIColor
 }
 	
