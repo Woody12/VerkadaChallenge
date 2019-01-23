@@ -39,8 +39,6 @@ class HomePresenter: HomePresenterProtocol {
 			queryMotionGrid = motionCells
 		}
 		
-		//Param is {"motionZones":[[0,0],[0,1]],"startTimeSec": 1548176238,"endTimeSec": 1548179838}
-		
 		// Create UTC Date
 		let startTimeSec = startTimeDate.timeIntervalSince1970
 		let endTimeSec = endTimeDate.timeIntervalSince1970
@@ -66,19 +64,23 @@ class HomePresenter: HomePresenterProtocol {
 		}
 	}
 	
+	public func foundImage(index: Int) -> Bool {
+		// Check for image name
+		if (motionResults.count <= index) || (motionResults[index].imageName == "") {
+			return false
+		}
+		
+		return self.motionResults[index].imageData != nil
+	}
+	
 	public func retrieveImage(index: Int) -> Data {
 		
 		// Create Image Data
 		let previewImage = UIImage(named: "Preview")
 		let previewData = previewImage!.pngData()!
 		
-		// Check for image name
-		if motionResults.count <= index {
-			return previewData
-		}
-		
-		let imageName = motionResults[index].imageName
-		if imageName == "" {
+		// Check for image
+		if (motionResults.count <= index) || (motionResults[index].imageName == "") {
 			return previewData
 		}
 		
@@ -87,7 +89,7 @@ class HomePresenter: HomePresenterProtocol {
 			return imageData
 		} else {
 			// Retrieve the image
-			motionAPI.retrieveImage(imageName: imageName) { (imageData) in
+			motionAPI.retrieveImage(imageName: self.motionResults[index].imageName) { (imageData) in
 				self.motionResults[index].imageData = imageData
 				self.updateThumbnail()
 			}
@@ -106,7 +108,7 @@ class HomePresenter: HomePresenterProtocol {
 		let dateUTC = Double(motionResults[index].dateUTC)
 		let date = Date.display(dateStyle: .short, timeStyle: .short, date: Date(timeIntervalSince1970: dateUTC))
 		
-		return "\(date) \(motionResults[index].duration) secs"
+		return "\(date), \(motionResults[index].duration) secs"
 	}
 	
 	public func storeGrid(gridX: Int, gridY: Int) {

@@ -21,6 +21,7 @@
 		D819424721F423620027DFA7 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D819424621F423620027DFA7 /* HomeViewController.swift */; };
 		D819424921F423D80027DFA7 /* HomeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D819424821F423D80027DFA7 /* HomeProtocol.swift */; };
 		D81E930521F779A40055A21B /* MotionResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81E930421F779A40055A21B /* MotionResult.swift */; };
+		D81E930721F8F4F60055A21B /* ThumbnailCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81E930621F8F4F60055A21B /* ThumbnailCollectionCell.swift */; };
 		D895A74821F55BBF00B17C59 /* ThumbnailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D895A74721F55BBF00B17C59 /* ThumbnailViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -62,6 +63,7 @@
 		D819424621F423620027DFA7 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		D819424821F423D80027DFA7 /* HomeProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeProtocol.swift; sourceTree = "<group>"; };
 		D81E930421F779A40055A21B /* MotionResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionResult.swift; sourceTree = "<group>"; };
+		D81E930621F8F4F60055A21B /* ThumbnailCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbnailCollectionCell.swift; sourceTree = "<group>"; };
 		D895A74721F55BBF00B17C59 /* ThumbnailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbnailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -169,6 +171,7 @@
 				D819424621F423620027DFA7 /* HomeViewController.swift */,
 				D819424821F423D80027DFA7 /* HomeProtocol.swift */,
 				D895A74721F55BBF00B17C59 /* ThumbnailViewController.swift */,
+				D81E930621F8F4F60055A21B /* ThumbnailCollectionCell.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -308,6 +311,7 @@
 				D819424921F423D80027DFA7 /* HomeProtocol.swift in Sources */,
 				D81E930521F779A40055A21B /* MotionResult.swift in Sources */,
 				D895A74821F55BBF00B17C59 /* ThumbnailViewController.swift in Sources */,
+				D81E930721F8F4F60055A21B /* ThumbnailCollectionCell.swift in Sources */,
 				D819420C21F2994D0027DFA7 /* AppDelegate.swift in Sources */,
 				D819424721F423620027DFA7 /* HomeViewController.swift in Sources */,
 				D819424021F29C210027DFA7 /* MotionCell.swift in Sources */,

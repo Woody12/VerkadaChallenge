@@ -20,6 +20,9 @@ class ThumbnailViewController: UIViewController {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		
+		// Register custom cell
+		thumbnailCollectionView.register(ThumbnailCollectionCell.self, forCellWithReuseIdentifier: ThumbnailReuse)
 	}
 	
 }
@@ -36,33 +39,17 @@ extension ThumbnailViewController: UICollectionViewDataSource {
 	
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 		
-		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ThumbnailReuse, for: indexPath)
-		cell.layer.borderColor = UIColor.purple.cgColor
-		cell.layer.borderWidth = 2.0
+		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ThumbnailReuse, for: indexPath) as! ThumbnailCollectionCell
 		
 		// Retrieve Image
 		if let parentController = parent as? HomeViewController {
 			if let imageData = parentController.presenter?.retrieveImage(index: indexPath.row) {
 				
-				// Display image
-				let imageView = UIImageView(frame: CGRect(x: 10, y: 0, width: 60, height: 50))
+				// Display image and info
 				let camImage = UIImage(data: imageData)
-				imageView.image = camImage
-				imageView.contentMode = .scaleAspectFill
-				cell.contentView.addSubview(imageView)
-				print("cell frame is \(cell.contentView.frame)")
-				
-				let infoLabel = UILabel(frame: CGRect(x: 10, y: 55, width: 60, height: 50))
-				infoLabel.font = UIFont(name: "Helvetica", size: CGFloat(12.0))
-				infoLabel.numberOfLines = 3
-				infoLabel.lineBreakMode = .byWordWrapping
-				infoLabel.text = parentController.presenter?.retrieveInfo(index: indexPath.row)
-				cell.contentView.addSubview(infoLabel)
-				
-				// Display the Cam View for first image
-				if indexPath.row == 0 {
-					parentController.displayCamImage(camImage: camImage)
-				}
+				let camInfo = parentController.presenter?.retrieveInfo(index: indexPath.row)
+				cell.imageView.image = camImage
+				cell.infoLabel.text = camInfo
 			}
 		}
 		
@@ -76,7 +63,7 @@ extension ThumbnailViewController: UICollectionViewDelegateFlowLayout {
 		
 		// Number of cells
 		let collectionViewWidth = collectionView.bounds.width / CGFloat(5)
-		let collectionViewHeight = CGFloat(120)
+		let collectionViewHeight = CGFloat(100)
 		
 		return CGSize(width: collectionViewWidth, height: collectionViewHeight)
 	}
@@ -86,7 +73,7 @@ extension ThumbnailViewController: UICollectionViewDelegateFlowLayout {
 	}
 	
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-		return 10
+		return 20
 	}
 }
 
@@ -94,11 +81,9 @@ extension ThumbnailViewController: UICollectionViewDelegate {
 	
 	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 		
-		// Show Cam Image
-		if let parentController = parent as? HomeViewController,
-			let imageData = parentController.presenter?.retrieveImage(index: indexPath.row) {
-				let camImage = UIImage(data: imageData)
-				parentController.displayCamImage(camImage: camImage)
+		// Show Cam Info
+		if let parentController = parent as? HomeViewController {
+			parentController.displayCamImage(at: indexPath.row)
 		}
 	}
 }

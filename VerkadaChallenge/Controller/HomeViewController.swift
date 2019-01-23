@@ -21,6 +21,7 @@ class HomeViewController: UIViewController, HomeViewProtocol {
 	private var thumbnailViewController: ThumbnailViewController!
 	
 	private var isShowGrid = false
+	private var isReloadCam = true
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -60,6 +61,11 @@ class HomeViewController: UIViewController, HomeViewProtocol {
 	
 	public func reloadThumbnail(thumbnailCount: Int) {
 		thumbnailViewController.numberOfThumbnails = thumbnailCount
+		
+		// Load Cam Photo to first photo in the thumbnail if needed
+		if isReloadCam {
+			displayCamImage(at: 0)
+		}
 	}
 	
 	public func displayNoResult() {
@@ -73,8 +79,18 @@ class HomeViewController: UIViewController, HomeViewProtocol {
 		}
 	}
 	
-	public func displayCamImage(camImage: UIImage?) {
-		camImageView.image = camImage
+	public func displayCamImage(at index: Int) {
+		
+		if presenter?.foundImage(index: index) ?? false {
+			
+			// Display the Cam View for first image
+			if let camImageData = presenter?.retrieveImage(index: index) {
+				
+				camImageView.image = UIImage(data: camImageData)
+				camInfoLabel.text = presenter?.retrieveInfo(index: index)
+				isReloadCam = false
+			}
+		}
 	}
 	
 	// Private Declaration
@@ -95,9 +111,6 @@ class HomeViewController: UIViewController, HomeViewProtocol {
 		camImageView.addGestureRecognizer(gridTapGesture)
 		
 		camInfoLabel.text = Date.display(dateStyle: .medium, timeStyle: .medium, date: Date())
-		
-		// test
-		thumbnailViewController.numberOfThumbnails = 10
 	}
 	
 	private func showDateTimePicker()  {
@@ -205,6 +218,9 @@ class HomeViewController: UIViewController, HomeViewProtocol {
 		dateSelected(datePicker: datePicker)
 		presenter?.search(startTimeDate: datePicker.date, endTimeDate: Date(timeInterval: DefaultHourLag, since: datePicker.date))
 		clearSearch()
+		
+		// Set the flag to reload Cam due to new query
+		isReloadCam = true
 	}
 }
 
