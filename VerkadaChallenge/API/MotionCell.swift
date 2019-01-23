@@ -9,11 +9,6 @@
 import Foundation
 
 struct MotionCell {
-	var x = 0
-	var y = 0
-	
-	init(x: Int, y: Int) {
-		self.x = x
-		self.y = y
-	}
+	let x: Int
+	let y: Int
 }

@@ -26,4 +26,5 @@ protocol HomePresenterProtocol: class {
 	func clearSearch()
 	
 	func retrieveImage(index: Int) -> Data
+	func retrieveInfo(index: Int) -> String?
 }

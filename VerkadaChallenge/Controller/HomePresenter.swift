@@ -75,6 +75,19 @@ class HomePresenter: HomePresenterProtocol {
 		}
 	}
 	
+	public func retrieveInfo(index: Int) -> String? {
+		
+		// Check for image name
+		if motionResults.count <= index {
+			return nil
+		}
+		
+		let dateUTC = Double(motionResults[index].dateUTC)
+		let date = Date.display(dateStyle: .short, timeStyle: .short, date: Date(timeIntervalSince1970: dateUTC))
+		
+		return "\(date) \(motionResults[index].duration) secs"
+	}
+	
 	public func storeGrid(gridX: Int, gridY: Int) {
 		
 		// Add selected grid

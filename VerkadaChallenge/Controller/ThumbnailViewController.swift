@@ -49,6 +49,13 @@ extension ThumbnailViewController: UICollectionViewDataSource {
 				imageView.contentMode = .scaleAspectFit
 				cell.contentView.addSubview(imageView)
 				
+				let infoLabel = UILabel(frame: CGRect(x: 20, y: 55, width: 100, height: 50))
+				infoLabel.font = UIFont(name: "Helvetica", size: CGFloat(12.0))
+				infoLabel.numberOfLines = 3
+				infoLabel.lineBreakMode = .byWordWrapping
+				infoLabel.text = parentController.presenter?.retrieveInfo(index: indexPath.row)
+				cell.contentView.addSubview(infoLabel)
+				
 				// Display the Cam View for first image
 				if indexPath.row == 0 {
 					parentController.displayCamImage(camImage: camImage)
@@ -66,7 +73,7 @@ extension ThumbnailViewController: UICollectionViewDelegateFlowLayout {
 		
 		// Number of cells
 		let collectionViewWidth = collectionView.bounds.width / CGFloat(5)
-		let collectionViewHeight = collectionView.bounds.height / CGFloat(5)
+		let collectionViewHeight = CGFloat(120)
 		
 		return CGSize(width: collectionViewWidth, height: collectionViewHeight)
 	}

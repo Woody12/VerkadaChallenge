@@ -146,13 +146,13 @@ class HomeViewController: UIViewController, HomeViewProtocol {
 	private func selectGrid(at cell: UICollectionViewCell?) {
 		cell?.contentView.layer.borderWidth = 2.0
 		cell?.contentView.layer.borderColor = UIColor.red.cgColor
-		cell?.contentView.layer.backgroundColor = UIColor.blue.cgColor
+		cell?.contentView.layer.backgroundColor = UIColor.clear.cgColor
 	}
 	
 	private func deSelectGrid(at cell: UICollectionViewCell?) {
 		cell?.contentView.layer.borderWidth = 2.0
 		cell?.contentView.layer.borderColor = UIColor.green.cgColor
-		cell?.contentView.layer.backgroundColor = UIColor.blue.cgColor
+		cell?.contentView.layer.backgroundColor = UIColor.clear.cgColor
 	}
 	
 	private func showGrid() {
@@ -199,6 +199,7 @@ class HomeViewController: UIViewController, HomeViewProtocol {
 	@objc
 	func datePickDone(datePicker: UIDatePicker) {
 		dateSelected(datePicker: datePicker)
+		presenter?.search()
 		clearSearch()
 	}
 }
