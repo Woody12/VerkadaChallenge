@@ -21,15 +21,14 @@ class HomePresenter: HomePresenterProtocol {
 	
 
 	public func search(startTimeDate: Date, endTimeDate: Date) {
-//		let motionCell1 = MotionCell(x: 0, y: 3)
-//		let motionCell2 = MotionCell(x: 0, y: 5)
-		//let motionCells = [motionCell1, motionCell2]
+
 		//1547848281
 		//1547851881
 		
 		// Determine whether to use Default motion grid (initial state) or
 		// User selected motion grid
 		var queryMotionGrid = [MotionCell]()
+		
 		if motionCells.count == 0 {
 			let motionCell1 = MotionCell(x: 0, y: 3)
 			let motionCell2 = MotionCell(x: 0, y: 5)
@@ -42,6 +41,9 @@ class HomePresenter: HomePresenterProtocol {
 		// Create UTC Date
 		let startTimeSec = startTimeDate.timeIntervalSince1970
 		let endTimeSec = endTimeDate.timeIntervalSince1970
+		
+		// Clear any previous results
+		motionResults.removeAll()
 		
 		motionAPI.searchMotion(motionCells: queryMotionGrid, startTimeSec: startTimeSec, endTimeSec: endTimeSec) { (status, motionZones: [[Int]]) in
 			
