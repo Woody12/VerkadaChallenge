@@ -12,6 +12,7 @@ import UIKit
 protocol HomeViewProtocol: class {
 	var presenter: HomePresenterProtocol? { get set }
 	
+	func displayCamImage(camImage: UIImage?)
 	func reloadThumbnail(thumbnailCount: Int)
 	func displayNoResult()
 }
@@ -24,6 +25,5 @@ protocol HomePresenterProtocol: class {
 	func removeGrid(gridX: Int, gridY: Int)
 	func clearSearch()
 	
-	func retrieveImage(index: Int) -> UIColor
+	func retrieveImage(index: Int) -> Data
 }
-	

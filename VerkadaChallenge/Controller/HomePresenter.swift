@@ -45,21 +45,25 @@ class HomePresenter: HomePresenterProtocol {
 		}
 	}
 	
-	public func retrieveImage(index: Int) -> UIColor {
+	public func retrieveImage(index: Int) -> Data {
+		
+		// Create Image Data
+		let previewImage = UIImage(named: "Preview")
+		let previewData = previewImage!.pngData()!
 		
 		// Check for image name
 		if motionResults.count <= index {
-			return .blue
+			return previewData
 		}
 		
 		let imageName = motionResults[index].imageName
 		if imageName == "" {
-			return .blue
+			return previewData
 		}
 		
 		// Check for image
-		if let _ = self.motionResults[index].imageData {
-			return .green
+		if let imageData = self.motionResults[index].imageData {
+			return imageData
 		} else {
 			// Retrieve the image
 			motionAPI.retrieveImage(imageName: imageName) { (imageData) in
@@ -67,7 +71,7 @@ class HomePresenter: HomePresenterProtocol {
 				self.updateThumbnail()
 			}
 			
-			return .blue
+			return previewData
 		}
 	}
 	

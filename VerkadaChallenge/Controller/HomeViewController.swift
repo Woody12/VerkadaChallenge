@@ -71,6 +71,10 @@ class HomeViewController: UIViewController, HomeViewProtocol {
 		present(alertController, animated: true, completion: nil)
 	}
 	
+	public func displayCamImage(camImage: UIImage?) {
+		camImageView.image = camImage
+	}
+	
 	// Private Declaration
 	private func initView() {
 		

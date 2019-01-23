@@ -38,8 +38,22 @@ extension ThumbnailViewController: UICollectionViewDataSource {
 		
 		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ThumbnailReuse, for: indexPath)
 		
+		// Retrieve Image
 		if let parentController = parent as? HomeViewController {
-			cell.contentView.backgroundColor = parentController.presenter?.retrieveImage(index: indexPath.row)
+			if let imageData = parentController.presenter?.retrieveImage(index: indexPath.row) {
+				
+				// Display image
+				let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 50))
+				let camImage = UIImage(data: imageData)
+				imageView.image = camImage
+				imageView.contentMode = .scaleAspectFit
+				cell.contentView.addSubview(imageView)
+				
+				// Display the Cam View for first image
+				if indexPath.row == 0 {
+					parentController.displayCamImage(camImage: camImage)
+				}
+			}
 		}
 		
 		return cell
@@ -58,7 +72,7 @@ extension ThumbnailViewController: UICollectionViewDelegateFlowLayout {
 	}
 	
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-		return 10
+		return 20
 	}
 	
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
@@ -70,23 +84,11 @@ extension ThumbnailViewController: UICollectionViewDelegate {
 	
 	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 		
-//		// Store selected grid cell
-//		let gridX = indexPath.row / NumRow
-//		let gridY = indexPath.row % NumRow
-//		presenter.storeGrid(gridX: gridX, gridY: gridY)
-//
-//		let cell = collectionView.cellForItem(at: indexPath)
-//		selectGrid(at: cell)
-	}
-	
-	func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-		
-//		// Remove selected grid cell
-//		let gridX = indexPath.row / NumRow
-//		let gridY = indexPath.row % NumRow
-//		presenter.removeGrid(gridX: gridX, gridY: gridY)
-//
-//		let cell = collectionView.cellForItem(at: indexPath)
-//		deSelectGrid(at: cell)
+		// Show Cam Image
+		if let parentController = parent as? HomeViewController,
+			let imageData = parentController.presenter?.retrieveImage(index: indexPath.row) {
+				let camImage = UIImage(data: imageData)
+				parentController.displayCamImage(camImage: camImage)
+		}
 	}
 }
