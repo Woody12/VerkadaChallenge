@@ -16,7 +16,6 @@ extension Date {
 	}
 	
 	static func display(dateStyle: DateFormatter.Style = .long, timeStyle: DateFormatter.Style = .long, date: Date) -> String {
-		//"01/12/2019 02:17am"
 		
 		let dateFormatter = DateFormatter()
 		dateFormatter.dateStyle = dateStyle

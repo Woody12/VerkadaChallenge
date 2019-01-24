@@ -27,10 +27,6 @@ class ThumbnailViewController: UIViewController {
 	
 }
 
-extension ThumbnailViewController {
-	
-}
-
 extension ThumbnailViewController: UICollectionViewDataSource {
 	
 	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

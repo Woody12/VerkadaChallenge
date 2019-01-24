@@ -21,9 +21,6 @@ class HomePresenter: HomePresenterProtocol {
 	
 
 	public func search(startTimeDate: Date, endTimeDate: Date) {
-
-		//1547848281
-		//1547851881
 		
 		// Determine whether to use Default motion grid (initial state) or
 		// User selected motion grid
@@ -42,13 +39,14 @@ class HomePresenter: HomePresenterProtocol {
 		let startTimeSec = startTimeDate.timeIntervalSince1970
 		let endTimeSec = endTimeDate.timeIntervalSince1970
 		
-		// Clear any previous results
-		motionResults.removeAll()
-		
 		motionAPI.searchMotion(motionCells: queryMotionGrid, startTimeSec: startTimeSec, endTimeSec: endTimeSec) { (status, motionZones: [[Int]]) in
 			
 			// Check status to see whether if loaded successfully
 			if (status && motionZones.count > 0) {
+				
+				// Clear any previous results
+				self.motionResults.removeAll()
+				
 				motionZones.forEach({ (motionCoord) in
 					let motionResult = MotionResult(dateUTC: motionCoord[0], duration: motionCoord[1])
 					print("motionCoord is \(String(describing: motionResult))")
@@ -92,8 +90,11 @@ class HomePresenter: HomePresenterProtocol {
 		} else {
 			// Retrieve the image
 			motionAPI.retrieveImage(imageName: self.motionResults[index].imageName) { (imageData) in
-				self.motionResults[index].imageData = imageData
-				self.updateThumbnail()
+				
+				if let imageData = imageData {
+					self.motionResults[index].imageData = imageData
+					self.updateThumbnail()
+				}
 			}
 			
 			return previewData

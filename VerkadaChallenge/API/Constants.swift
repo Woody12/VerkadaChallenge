@@ -24,4 +24,4 @@ public let ThumbnailReuse = "MotionCollectionID"
 public let EmbedSegue = "EmbedContainerID"
 
 // Search Parameter
-public let DefaultHourLag: Double = 3600
+public let DefaultHourLag: Double = -1 * 3600

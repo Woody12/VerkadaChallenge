@@ -26,6 +26,10 @@ class HomeViewController: UIViewController, HomeViewProtocol {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
+		// Check for internet
+		NotificationCenter.default.addObserver(self, selector: #selector(HomeViewController.networkStatusChanged(_:)), name: NSNotification.Name(rawValue: ReachabilityStatusChangedNotification), object: nil)
+		Reach().monitorReachabilityChanges()
+		
 		initView()
 	}
 	
@@ -71,11 +75,7 @@ class HomeViewController: UIViewController, HomeViewProtocol {
 	public func displayNoResult() {
 		
 		DispatchQueue.main.async {
-			let alertController = UIAlertController(title: "Motion API Result", message: "No images are found", preferredStyle: .alert)
-			let okAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-			
-			alertController.addAction(okAction)
-			self.present(alertController, animated: true, completion: nil)
+			AlertUtil.showDialog(title: "Motion API Result", message: "No images are found", target: self)
 		}
 	}
 	
@@ -98,8 +98,8 @@ class HomeViewController: UIViewController, HomeViewProtocol {
 		
 		// Setup Presenter and show current date and time with one hour lag
 		presenter?.homeView = self
-		let yesterday = Date(timeInterval: -24 * DefaultHourLag, since: Date())
-		presenter?.search(startTimeDate: yesterday, endTimeDate: Date(timeInterval: DefaultHourLag, since: yesterday))
+		
+		presenter?.search(startTimeDate: Date(timeInterval: DefaultHourLag, since: Date()), endTimeDate: Date())
 		
 		gridCollectionView.allowsMultipleSelection = true
 		
@@ -127,7 +127,7 @@ class HomeViewController: UIViewController, HomeViewProtocol {
 			self.datePickDone(datePicker: dateTimePicker)
 		}
 		
-		//add button to action sheet
+		// Add button to action sheet
 		alertController.addAction(doneAction)
 		
 		let height = NSLayoutConstraint(item: alertController.view, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 300)
@@ -149,6 +149,8 @@ class HomeViewController: UIViewController, HomeViewProtocol {
 		components.calendar = calendar
 		components.year = -1 // Back one year
 		let minDate: Date = calendar.date(byAdding: components, to: currentDate)!
+		
+		print("min date is \(Date.display(date: minDate))" )
 		
 		let dateTimePicker = UIDatePicker(frame: CGRect(x: 0, y: 40, width: self.view.frame.size.width, height: 200))
 		
@@ -184,6 +186,22 @@ class HomeViewController: UIViewController, HomeViewProtocol {
 		}
 	}
 	
+	private func internetAvailable() -> Bool {
+		let status = Reach().connectionStatus()
+		switch status {
+		case .unknown, .offline:
+			print("Not connected")
+			AlertUtil.showDialog(title: "Internet Offline", message: "Oops!  Please check the internet setting.", target: self)
+			return false
+		case .online(.wwan):
+			print("Connected via WWAN")
+			return true
+		case .online(.wiFi):
+			print("Connected via WiFi")
+			return true
+		}
+	}
+	
 	// Event Handler
 	
 	@objc
@@ -209,18 +227,33 @@ class HomeViewController: UIViewController, HomeViewProtocol {
 	}
 	
 	@objc
+	func networkStatusChanged(_ notification: Notification) {
+		let userInfo = (notification as NSNotification).userInfo
+		print(userInfo as Any)
+		
+		let _ = internetAvailable()
+	}
+	
+	@objc
 	func dateSelected(datePicker: UIDatePicker) {
-//		camInfoLabel.text =	Date.display(dateStyle: .medium, timeStyle: .medium, date: datePicker.date)
+		camInfoLabel.text =	Date.display(dateStyle: .medium, timeStyle: .medium, date: datePicker.date)
 	}
 	
 	@objc
 	func datePickDone(datePicker: UIDatePicker) {
 		dateSelected(datePicker: datePicker)
-		presenter?.search(startTimeDate: datePicker.date, endTimeDate: Date(timeInterval: DefaultHourLag, since: datePicker.date))
-		clearSearch()
 		
-		// Set the flag to reload Cam due to new query
-		isReloadCam = true
+		// Check for internet availability
+		if internetAvailable() {
+			
+			presenter?.search(startTimeDate: Date(timeInterval: DefaultHourLag, since: datePicker.date), endTimeDate: datePicker.date)
+	
+			// Reset search
+			clearSearch()
+			
+			// Set the flag to reload Cam due to new query
+			isReloadCam = true
+		}
 	}
 }
 
