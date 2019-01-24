@@ -90,6 +90,8 @@ class HomeViewController: UIViewController, HomeViewProtocol {
 				camInfoLabel.text = presenter?.retrieveInfo(index: index)
 				isReloadCam = false
 			}
+		} else {
+			print("Image not found")
 		}
 	}
 	
@@ -130,8 +132,23 @@ class HomeViewController: UIViewController, HomeViewProtocol {
 		// Add button to action sheet
 		alertController.addAction(doneAction)
 		
-		let height = NSLayoutConstraint(item: alertController.view, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 300)
-		alertController.view.addConstraint(height);
+		if UIDevice.current.orientation.isLandscape {
+			NSLayoutConstraint.activate([
+				NSLayoutConstraint(item: alertController.view, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: view.frame.size.height),
+				])
+		} else {
+			NSLayoutConstraint.activate([
+				NSLayoutConstraint(item: alertController.view, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: view.frame.size.height * 1/2),
+				])
+		}
+		
+		if let _ = alertController.popoverPresentationController {
+			
+			// For iPad, (ignore for iPhone)
+			alertController.popoverPresentationController?.sourceView = self.view
+			alertController.popoverPresentationController?.sourceRect = self.view.bounds
+			alertController.popoverPresentationController?.permittedArrowDirections = []
+		}
 		
 		self.present(alertController, animated: true, completion: nil)
 		
@@ -152,10 +169,10 @@ class HomeViewController: UIViewController, HomeViewProtocol {
 		
 		print("min date is \(Date.display(date: minDate))" )
 		
-		let dateTimePicker = UIDatePicker(frame: CGRect(x: 0, y: 40, width: self.view.frame.size.width, height: 200))
+		let dateTimePicker = UIDatePicker(frame: CGRect(x: 0, y: 40, width: 0, height: 0))
 		
 		dateTimePicker.datePickerMode = UIDatePicker.Mode.dateAndTime
-		dateTimePicker.addTarget(self, action: #selector(dateSelected(datePicker:)), for: .valueChanged)
+		
 		dateTimePicker.minimumDate = minDate
 		dateTimePicker.maximumDate = Date() // Today Date
 		
@@ -235,13 +252,7 @@ class HomeViewController: UIViewController, HomeViewProtocol {
 	}
 	
 	@objc
-	func dateSelected(datePicker: UIDatePicker) {
-		camInfoLabel.text =	Date.display(dateStyle: .medium, timeStyle: .medium, date: datePicker.date)
-	}
-	
-	@objc
 	func datePickDone(datePicker: UIDatePicker) {
-		dateSelected(datePicker: datePicker)
 		
 		// Check for internet availability
 		if internetAvailable() {
