@@ -7,13 +7,14 @@
 //
 
 import Foundation
+import UIKit
 
 struct MotionResult {
 	
 	var dateUTC = 0
 	var duration = 0
 	var imageName = ""
-	var imageData: Data?
+	var image: UIImage?
 	
 	init(dateUTC: Int, duration: Int) {
 		self.dateUTC = dateUTC

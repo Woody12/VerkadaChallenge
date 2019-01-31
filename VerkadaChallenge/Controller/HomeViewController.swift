@@ -84,9 +84,9 @@ class HomeViewController: UIViewController, HomeViewProtocol {
 		if presenter?.foundImage(index: index) ?? false {
 			
 			// Display the Cam View for first image
-			if let camImageData = presenter?.retrieveImage(index: index) {
+			if let camImage = presenter?.retrieveImage(index: index) {
 				
-				camImageView.image = UIImage(data: camImageData)
+				camImageView.image = camImage
 				camInfoLabel.text = presenter?.retrieveInfo(index: index)
 				isReloadCam = false
 			}

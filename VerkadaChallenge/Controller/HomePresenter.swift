@@ -39,27 +39,27 @@ class HomePresenter: HomePresenterProtocol {
 		let startTimeSec = startTimeDate.timeIntervalSince1970
 		let endTimeSec = endTimeDate.timeIntervalSince1970
 		
-		motionAPI.searchMotion(motionCells: queryMotionGrid, startTimeSec: startTimeSec, endTimeSec: endTimeSec) { (status, motionZones: [[Int]]) in
+		motionAPI.searchMotion(motionCells: queryMotionGrid, startTimeSec: startTimeSec, endTimeSec: endTimeSec) { [weak self] (status, motionZones: [[Int]]) in
 			
 			// Check status to see whether if loaded successfully
 			if (status && motionZones.count > 0) {
 				
 				// Clear any previous results
-				self.motionResults.removeAll()
+				self?.motionResults.removeAll()
 				
 				motionZones.forEach({ (motionCoord) in
 					let motionResult = MotionResult(dateUTC: motionCoord[0], duration: motionCoord[1])
 					print("motionCoord is \(String(describing: motionResult))")
 					
 					// Store the result
-					self.motionResults.append(motionResult)
+					self?.motionResults.append(motionResult)
 				})
 				
 				// Re-display thumbnail
-				self.updateThumbnail()
+				self?.updateThumbnail()
 				
 			} else {
-				self.homeView?.displayNoResult()
+				self?.homeView?.displayNoResult()
 			}
 		}
 	}
@@ -70,34 +70,34 @@ class HomePresenter: HomePresenterProtocol {
 			return false
 		}
 		
-		return self.motionResults[index].imageData != nil
+		return self.motionResults[index].image != nil
 	}
 	
-	public func retrieveImage(index: Int) -> Data {
+	public func retrieveImage(index: Int) -> UIImage? {
 		
-		// Create Image Data
+		//let previewData = previewImage!.pngData()!
 		let previewImage = UIImage(named: "Preview")
-		let previewData = previewImage!.pngData()!
 		
 		// Check for image
 		if (motionResults.count <= index) || (motionResults[index].imageName == "") {
-			return previewData
+			// Create Image Data
+			return previewImage
 		}
 		
 		// Check for image
-		if let imageData = self.motionResults[index].imageData {
-			return imageData
+		if let image = self.motionResults[index].image {
+			return image
 		} else {
 			// Retrieve the image
 			motionAPI.retrieveImage(imageName: self.motionResults[index].imageName) { (imageData) in
 				
 				if let imageData = imageData {
-					self.motionResults[index].imageData = imageData
+					self.motionResults[index].image = UIImage(data: imageData)
 					self.updateThumbnail()
 				}
 			}
 			
-			return previewData
+			return previewImage
 		}
 	}
 	

@@ -26,6 +26,6 @@ protocol HomePresenterProtocol: class {
 	func clearSearch()
 	
 	func foundImage(index: Int) -> Bool
-	func retrieveImage(index: Int) -> Data
+	func retrieveImage(index: Int) -> UIImage?
 	func retrieveInfo(index: Int) -> String?
 }

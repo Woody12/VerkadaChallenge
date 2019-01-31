@@ -42,7 +42,7 @@ extension ThumbnailViewController: UICollectionViewDataSource {
 			if let imageData = parentController.presenter?.retrieveImage(index: indexPath.row) {
 				
 				// Display image and info
-				let camImage = UIImage(data: imageData)
+				let camImage = imageData
 				let camInfo = parentController.presenter?.retrieveInfo(index: indexPath.row)
 				cell.imageView.image = camImage
 				cell.infoLabel.text = camInfo
